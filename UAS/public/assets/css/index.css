@@ -1,0 +1,21 @@
+.nav-link.red{
+    color: red;}
+.nav-link.active.red{
+        color: rgb(250, 100, 100)
+    }
+.nav-link.red:hover{
+        color: rgb(250, 100, 100)
+    }
+.icon{
+    font-size: 25px;
+}
+.linke{
+    font-size: 20px;
+    text-decoration: none;
+    margin-left: 10px;
+    color: white;
+}
+.linke:hover{
+    color: rgb(255, 56, 56);
+}
+
