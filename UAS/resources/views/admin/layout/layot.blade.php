@@ -221,17 +221,17 @@
               <li class="nav-item">
                 <a href="/admin" class="nav-link active ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>Main dashborad</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./admin/user" class="nav-link">
+                <a href="{{ asset('admin/user') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
+                  <p>Userlist</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./home" class="nav-link">
+                <a href="{{ asset('/admin/barang') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v3</p>
                 </a>

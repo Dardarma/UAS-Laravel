@@ -25,6 +25,7 @@ class Controller extends BaseController
     }
 
     
+
     public function admin()
     {
         return view('admin.home_admin',[
@@ -40,5 +41,34 @@ class Controller extends BaseController
         ]);
     }
 
+    public function Barang_list()
+    {
+        return view('admin.Barang_list',[
+            'judul' => 'Barang_list'
+        ]);
+    }
+
+    public function Login_admin()
+    {
+        return view('admin.login',[
+            'judul' => 'Login_admin'
+        ]);
+    }
+
+    public function Register_admin()
+    {
+        return view('admin.User_add',[
+            'judul' => 'Register_admin'
+        ]);
+    }
+
+    public function Register_barang()
+    {
+        return view('admin.add_barang',[
+            'judul' => 'Register_barang'
+        ]);
+    }
+
+    
 
 }

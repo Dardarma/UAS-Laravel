@@ -1,6 +1,7 @@
 @extends('admin.layout.layot')
 @section('content')
 
+
 <div class="container-fluid">
 
     <div class="content-wrapper mt-2">
@@ -8,59 +9,53 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Konfirmasi Penjualan</h3>
-    
-                  <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-    
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-default">
-                          <i class="fas fa-search"></i>
-                        </button>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <h3 class="card-title">List Pengguna</h3>
+                      <div class="card-tools">
+                        <a href="{{ asset('admin/user/register') }}" class="btn btn-primary">Tambah user</a>
                       </div>
-                    </div>
                   </div>
-                </div>
+                  <div class="input-group input-group-sm mt-2" style="width: 150px; margin-left: auto;">
+                      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                      <div class="input-group-append">
+                          <button type="submit" class="btn btn-default">
+                              <i class="fas fa-search"></i>
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              
+              
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" style="height: 300px;">
                   <table class="table table-head-fixed text-nowrap">
                     <thead>
                       <tr>
-                        <th>ID Pemesanan</th>
                         <th>ID User</th>
-                        <th>User</th>
-                        <th>tanggal</th>
-                        <th>Detail Pemesanan</th>
-                        <th>status Pemesanan</th>
-                        <th>Terima tolak</th>
+                        <th>nama</th>
+                        <th>email</th>
+                        <th>password</th>
+                        <th>role</th>
+                        <th>No Hp</th>
+                        <th>aksi</th>
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach ($users as $user)
                       <tr>
-                        <td>12</td>
-                        <td>183</td>
-                        <td>John Doe</td>
-                        <td>11-7-2014</td>
-                        <td><span class="tag tag-success">Pistol 1</span></td>
+                        <td scope="row">{{$user->id}}</td>
+                        <td>{{ $user->nama}}</td>
+                        <td>{{ $user->email}}</td>
+                        <td>{{ $user->password}}</td>
+                        <td>{{ $user->role}}</td>
+                        <td>{{ $user->Hp}}</td>
                         <td>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Status
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Diterima</a></li>
-                                    <li><a class="dropdown-item" href="#">Diproses</a></li>
-                                    <li><a class="dropdown-item" href="#">Dikirim</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Tolak</button>
-                            <button type="button" class="btn btn-success">Terima</button>
+                         <a href="{{ url('admin/user/'.$user->id.'/tedit')}}" class="btn btn-primary">edit</a>
+                          <a href="{{url('/admin/user/'.$user->id.'/delete')}}" class="btn btn-danger">Hapus</a>
                         </td>
                       </tr>
                     </tbody>
+                    @endforeach
                   </table>
                 </div>
                 <!-- /.card-body -->
