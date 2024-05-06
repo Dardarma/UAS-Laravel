@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Users extends Model
+class Users extends Model implements AuthenticatableContract
 {
-    use HasFactory;
+    use HasFactory, Authenticatable;
     protected $table = 'users';
     protected $fillable = ['nama','email','password','role','Hp'];
     protected $hidden = ['password'];
-    
+
     protected function casts()
     {
         return [
@@ -19,4 +21,4 @@ class Users extends Model
             'password'=>'hased'
         ];
     }
-}       
+}
