@@ -15,7 +15,7 @@ use App\Http\Controllers\session;
 |
 */
 
-Route::get('/', [Controller::class, 'index'])->name('Beranda');
+Route::get('/', [Controller::class, 'index'])->name('Beranda')->name('home');
 
 Route::get('/store', [Controller::class, 'store'])->name('store');
 
@@ -45,7 +45,7 @@ Route::get('/admin/user/{id}/delete', [UsersController::class, 'Delete_user'])->
 Route::get('/admin/barang', [BarangController::class, 'index'])->name('Barang_list');
 
 //Barang add route
-Route::get('/admin/barang/register', [Controller::class, 'Register_barang'])->name('Register_barang');    
+Route::get('/admin/barang/register', [Controller::class, 'Register_barang'])->name('Register_barang');
 Route::post('/admin/barang/tambah', [BarangController::class, 'Tambah_barang'])->name('Tambah_barang');
 
 //Barang edit route
