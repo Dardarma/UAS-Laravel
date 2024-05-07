@@ -30,6 +30,7 @@ class session extends Controller
         } else {
             return redirect()->route('tlogin')->with('error', 'Email atau Password salah');
         }
+        
     }
 
 }
