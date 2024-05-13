@@ -48,6 +48,14 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="stok_barang">stok:</label>
+                                <input type="text" name="stok_barang" id="stok_barang" class="form-control" required value="{{ old('stok_barang', $barangs->stok_barang) }}">
+                                @error('harga_barang')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Edit Barang</button>
                             </div>
                         </form>

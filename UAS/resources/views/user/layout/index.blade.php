@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset ('assets/css/index.css')}}">
     <link rel="stylesheet" href="{{ asset ('assets/css/landingpage.css')}}">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body class="bg-black">
     <main>
@@ -33,12 +35,15 @@
                           <li class="nav-item">
                             <a class="nav-link red" href="#">Profil</a>
                           </li>
+                          <li>
+                            <a class="nav-link red"  href="{{Route('logout')}}">Clogout</a>
+                          </li>
                         </ul>
                               <form class="d-flex mx-auto" role="search" >
                                 <input class="form-control me-2 border-danger" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                               </form>
-                            <button class="btn btn-danger" type="login">Login/Register</button>
+                            <a href="{{Route('tlogin')}}" class="btn btn-danger">Login/register</a>
                       </div>
                     </div>
                   </nav>
@@ -74,5 +79,6 @@
     <script src="https://kit.fontawesome.com/44d172af1c.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="{{asset ('assets/js/custom.js')}}"></script>
 </body>
 </html>

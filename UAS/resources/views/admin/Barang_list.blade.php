@@ -24,6 +24,8 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" style="height: 300px;">
+                  <div class="card-body">
+                    <a href="{{Route('Register_barang')}}" class="btn btn-primary">Tambah Barang</a>
                   <table class="table table-head-fixed text-nowrap">
                     <thead>
                       <tr>
@@ -32,6 +34,7 @@
                         <th>Foto Barang</th>
                         <th>Deskripsi barang</th>
                         <th>Harga Barang</th>
+                        <th>Stok Barang</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -45,9 +48,10 @@
                         </td>
                         <td>{{$brg->deskripsi_barang}}</td>
                         <td>{{$brg->harga_barang}}</td>
+                        <td>{{$brg->stok_barang}}</td>
                         <td>
                           <a href="{{('/admin/barang/'.$brg->id.'/tedit')}}" class="btn btn-primary">edit</a>
-                            <button type="button" class="btn btn-success">delete</button>
+                           <a href="{{('/admin/barang/'.$brg->id.'/delete')}}" class="btn btn-danger">delete</a>
                         </td>
                       </tr>
                     </tbody>

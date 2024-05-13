@@ -13,7 +13,7 @@ class usersseeder extends Seeder
         Users::create([
             'nama' => 'muhammad alexius xaverius',
             'email' => 'muhxaverius@gmail.com',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'role' => 'admin',
             'Hp' => '08123456789',]);
 

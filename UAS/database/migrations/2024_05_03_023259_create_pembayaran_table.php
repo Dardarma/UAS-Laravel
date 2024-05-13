@@ -14,21 +14,16 @@ return new class extends Migration
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_barang');
-            $table->unsignedBigInteger('idUsers');
-            $table->unsignedBigInteger('idlogbarang');
-            $table->string('nama_barang');
-            $table->string('namauser');
-            $table->string('jumlah_barang');
-            $table->string('harga_barang');
+            $table->unsignedBigInteger('id_users');
+            $table->unsignedBigInteger('id_cart');
+            $table->string('nama_user');
             $table->string('total_harga');
             $table->string('validasi');
             $table->string('bukti_pembayaran');
             $table->timestamps();
 
             $table->foreign('id_barang')->references('id')->on('barangs');
-            $table->foreign('idUsers')->references('id')->on('users');
-            $table->foreign('idlogbarang')->references('id')->on('logbarang');
-
+            $table->foreign('id_users')->references('id')->on('users');
             
         });
     }

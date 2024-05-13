@@ -11,7 +11,7 @@ class UsersController extends Controller
     {
       
         $users = Users::all();
-        return  response()->json($users, 200);
+        return  view('admin.User_list',compact('users'));
     }
 
     public function Tambah_user(Request $request):RedirectResponse

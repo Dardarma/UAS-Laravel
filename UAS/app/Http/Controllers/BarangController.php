@@ -15,6 +15,7 @@ class BarangController extends Controller
     {  
         $barangs = Barang::all();
         return view('admin.Barang_list',compact('barangs'));
+        
     }
 
     public function Tambah_barang(Request $request):RedirectResponse
@@ -24,6 +25,7 @@ class BarangController extends Controller
                 'foto_barang' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'deskripsi_barang' => 'required|string',
                 'harga_barang' => 'required|integer',
+                'stok_barang' => 'required|integer',
             ]);
 
             $barangs = Barang::create([
@@ -31,6 +33,7 @@ class BarangController extends Controller
                 'foto_barang' => $request->foto_barang,
                 'deskripsi_barang' => $request->deskripsi_barang,
                 'harga_barang' => $request->harga_barang,
+                'stok_barang' => $request->stok_barang,
             ]);
 
             if ($request->hasFile('foto_barang')) {

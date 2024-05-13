@@ -35,6 +35,13 @@
                   <input type="text" name="harga_barang" id="harga_barang" class="form-control">
               </div>
 
+
+              <div class="form-group">
+                <label for="hp">Stok:</label>
+                <input type="text" name="stok_barang" id="stok_barang" class="form-control">
+            </div>
+
+
               <div class="form-group">
                   <button type="submit" class="btn btn-primary">Tambah barang</button>
               </div>

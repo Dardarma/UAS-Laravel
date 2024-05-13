@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(usersseeder::class);
+        $this->call(BarangSeeder::class);
     }
 }

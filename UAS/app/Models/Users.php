@@ -21,4 +21,12 @@ class Users extends Model implements AuthenticatableContract
             'password'=>'hased'
         ];
     }
+
+    public function pembayaran(){
+        return $this->hasMany(Pembayaran::class);
+    }
+
+    public function cart(){
+        return $this->hasMany(Cart::class);
+    }   
 }
