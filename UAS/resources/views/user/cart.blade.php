@@ -24,8 +24,7 @@
                                 <label for="qty" class="col-sm-2 col-form-label fs-5">Quantity</label>
                                 <div class="col-sm-5 d-flex">
                                     <button class="rounded-start bg-secondary p-2 border border-0 minus" id="minus" disabled>-</button>
-                                    <input type="number" id="jumlah" min="0" max="9999" name="jumlah"
-                                        class="form-control w-25 text-center" value="1">
+                                    <input type="number" id="jumlah" min="0" max="9999" name="jumlah" class="form-control w-25 text-center" value="1" readonly>
                                     <button class="rounded-end bg-secondary p-2 border border-0 plus" id="plus">+</button>
                                 </div>
                             </div>

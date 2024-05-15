@@ -17,7 +17,7 @@ use App\Http\Controllers\cartController;
 |
 */
 
-Route::get('/', [Controller::class, 'index'])->name('Beranda')->name('home');
+Route::get('/', [Controller::class, 'index'])->name('Beranda');
 
 // Route::get('/store', [Controller::class, 'store'])->name('store');
 Route::get('/store', [cartController::class, 'store'])->name('store');

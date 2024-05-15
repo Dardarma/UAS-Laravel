@@ -15,9 +15,15 @@
             </div>
             <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                 <p class="m-0" style="font-size: 16px; font-weight: 600; color: red">{{$brg->harga_barang}}</p>
+                @if (Auth::check())
                 <button class="btn btn-outline-danger" style="font-size: 24px">
                     <i class="fa-solid fa-cart-plus"></i>
                 </button>
+                @else
+                <a href="{{Route('tlogin')}}" class="btn btn-outline-danger" style="font-size: 24px">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </a>
+                @endif
             </div>
         </div>
       @endforeach

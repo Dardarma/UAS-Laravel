@@ -27,23 +27,27 @@
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                           <li class="nav-item">
-                            <a class="nav-link active red" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active red" aria-current="page" href="{{Route('Beranda')}}">Home</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link red" href="#">Shop</a>
+                            <a class="nav-link red" href="{{Route('store')}}">Shop</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link red" href="#">Profil</a>
-                          </li>
-                          <li>
-                            <a class="nav-link red"  href="{{Route('logout')}}">Clogout</a>
                           </li>
                         </ul>
                               <form class="d-flex mx-auto" role="search" >
                                 <input class="form-control me-2 border-danger" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                               </form>
+                              @if (Auth::check())
+                            <a href="{{Route('cart')}}" class="btn btn-danger mx-1"><i class="fa-solid fa-bag-shopping"></i></a>
+                            @endif
+                              @if (Auth::check())
+                            <a href="{{Route('logout')}}" class="btn btn-danger">Logout</a>
+                              @else
                             <a href="{{Route('tlogin')}}" class="btn btn-danger">Login/register</a>
+                            @endif
                       </div>
                     </div>
                   </nav>
