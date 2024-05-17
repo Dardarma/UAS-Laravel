@@ -15,14 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_barang');
-            $table->string('nama_user');
-            $table->string('nama_barang');
-            $table->string('jumlah_barang');
-            $table->string('harga_barang');
-            $table->timestamps();
 
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_barang')->references('id')->on('barangs');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_barang')->references('id')->on('barangs')->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 

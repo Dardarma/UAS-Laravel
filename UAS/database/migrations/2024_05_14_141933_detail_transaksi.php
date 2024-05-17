@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_pembayaran');
             $table->unsignedBigInteger('id_barang');
+            $table->integer('jumlah');
+            $table->integer('total');
+            $table->integer('status')->default(0);
             $table->timestamps();
 
             $table->foreign('id_pembayaran')->references('id')->on('pembayaran');

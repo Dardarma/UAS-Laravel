@@ -30,11 +30,7 @@
                             <a class="nav-link active red" aria-current="page" href="{{Route('Beranda')}}">Home</a>
                           </li>
                           <li class="nav-item">
-                            @if (Auth::check())
                             <a class="nav-link red" href="{{Route('store_login')}}">Shop</a>
-                            @else
-                            <a class="nav-link red" href="{{Route('store')}}">Shop</a>
-                            @endif
                           </li>
                           <li class="nav-item">
                             <a class="nav-link red" href="#">Profil</a>
@@ -44,15 +40,16 @@
                                 <input class="form-control me-2 border-danger" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                               </form>
-                              @if (Auth::check())
-                            <a href="{{Route('logout')}}" class="btn btn-danger">Logout</a>
-                              @else
-                            <a href="{{Route('tlogin')}}" class="btn btn-danger">Login/register</a>
-                              @endif
+                              
+                            <a href="{{Route('cart')}}" class="btn btn-danger mx-1">
+                              <i class="fa-solid fa-bag-shopping"></i>
+                              {{Cart::count()}}
+                            </a>
+                            <a href="{{Route('logout')}}" class="btn btn-danger">Logouteeeeee</a>
 
                       </div>
                     </div>
-                  </nav>
+                  
             </nav>
         </header>
     </main>
@@ -69,7 +66,7 @@
             <ul>
               <li style="list-style-type: none">
                 <i class="fa-brands fa-instagram icon"></i>  
-                <a href="#" class="linke">@nirwana</a>
+                <a href="#" c</navlass="linke">@nirwana</a>
               </li>
               <li style="list-style-type: none">
                 <i class="fa-brands fa-facebook icon"></i>

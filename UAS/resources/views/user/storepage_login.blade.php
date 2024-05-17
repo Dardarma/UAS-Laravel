@@ -1,4 +1,4 @@
-@extends('user.layout.index')
+@extends('user.layout.inlogin')
 
 @section('content')
 <div class="row mt-4 justify-content-center">
@@ -15,18 +15,14 @@
             </div>
             <div class="card-footer d-flex flex-row justify-content-between align-items-center">
                 <p class="m-0" style="font-size: 16px; font-weight: 600; color: red">{{$brg->harga_barang}}</p>
-                @if (Auth::check())
+
                 <a href="{{url('addtocart',$brg->id)}}" class="btn btn-outline-danger" style="font-size: 24px">
                     <i class="fa-solid fa-cart-plus"></i>
                 </a>
-                @else
-                <a href="{{route('tlogin')}}" class="btn btn-outline-danger" style="font-size: 24px">
-                    <i class="fa-solid fa-cart-plus"></i>
-                </a>
-                @endif
             </div>
         </div>
       @endforeach
     </div>
 </div>
+
 @endsection

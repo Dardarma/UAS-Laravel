@@ -1,4 +1,5 @@
 @extends('user.layout.index')
+
 @section('content')
    {{-- banner --}}
    <div id="carouselExample" class="carousel slide">

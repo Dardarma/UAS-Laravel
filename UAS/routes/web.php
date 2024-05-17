@@ -5,6 +5,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\session;
 use App\Http\Controllers\cartController;
+use App\Http\Controllers\Pembayaran_controller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +19,14 @@ use App\Http\Controllers\cartController;
 |
 */
 
-Route::get('/', [Controller::class, 'index'])->name('Beranda');
 
 // Route::get('/store', [Controller::class, 'store'])->name('store');
-Route::get('/store', [cartController::class, 'store'])->name('store');
 
 
+Route::get('/', [Controller::class, 'index'])->name('Beranda');
 //login route
 Route::middleware(['guest'])->group(function () { 
+    Route::get('/store', [cartController::class, 'store'])->name('store');
     Route::get('/login', [Controller::class, 'Login_admin'])->name('tlogin');
     Route::post('/login-pros', [session::class, 'login_pros'])->name('login-pros');
 });
@@ -33,6 +35,10 @@ Route::middleware(['guest'])->group(function () {
 Route::get('/logout', [session::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
+
+    //user route main
+    Route::get('/store_login', [cartController::class, 'store_login'])->name('store_login');
+
     
     //Admin route
     Route::get('/admin', [Controller::class, 'admin'])->name('admin');
@@ -65,7 +71,11 @@ Route::middleware(['auth'])->group(function () {
     //Barang delete route
     Route::get('/admin/barang/{id}/delete', [BarangController::class, 'Delete_barang'])->name('Delete_barang');
 
-    //Cart list route
-});
 
-Route::get('/cart', [cartController::class, 'index'])->name('cart');
+    //add to cart route
+    Route::get('/addtocart/{id}', [Pembayaran_controller::class, 'addTocart'])->name('addtocart');
+
+    Route::get('/cart', [cartController::class, 'index'])->name('cart');
+
+    
+});
