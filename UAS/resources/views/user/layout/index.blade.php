@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +45,13 @@
                                 <input class="form-control me-2 border-danger" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                               </form>
+
+                              @if (Auth::check())
+                              <a href="{{Route('cart')}}" class="btn btn-danger mx-1">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                              </a>
+                              @endif
+
                               @if (Auth::check())
                             <a href="{{Route('logout')}}" class="btn btn-danger">Logout</a>
                               @else

@@ -26,12 +26,7 @@ class Controller extends BaseController
 
     
 
-    public function admin()
-    {
-        return view('admin.home_admin',[
-            'judul' => 'store'
-        ]);
-    }
+
 
        
     public function User_list()

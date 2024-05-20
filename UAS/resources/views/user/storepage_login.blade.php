@@ -1,4 +1,4 @@
-@extends('user.layout.inlogin')
+@extends('user.layout.index')
 
 @section('content')
 <div class="row mt-4 justify-content-center">

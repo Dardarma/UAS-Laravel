@@ -36,12 +36,14 @@ Route::get('/logout', [session::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
 
+    
+
     //user route main
     Route::get('/store_login', [cartController::class, 'store_login'])->name('store_login');
 
     
     //Admin route
-    Route::get('/admin', [Controller::class, 'admin'])->name('admin');
+    Route::get('/admin',[Pembayaran_controller::class,'detail_checkout'])->name('admin');
     
     //User list route
     Route::get('/admin/user', [UsersController::class, 'index'])->name('User_list');
@@ -75,7 +77,28 @@ Route::middleware(['auth'])->group(function () {
     //add to cart route
     Route::get('/addtocart/{id}', [Pembayaran_controller::class, 'addTocart'])->name('addtocart');
 
+    //delete cart route
+    Route::get('/deletecart/{id}', [cartController::class, 'delete_cart'])->name('deletecart');
+
+    //update cart route
+    Route::post('/updatecart/{id}', [cartController::class, 'update_cart'])->name('updatecart');
+
+    //move to chekout route
+    Route::post('/checkout', [Pembayaran_controller::class, 'checkout'])->name('checkout');
+
+    //detail checkout route
+
     Route::get('/cart', [cartController::class, 'index'])->name('cart');
+
+    // validasi pembayaran
+    Route::post('/admin/updatedetail/{id}', [Pembayaran_controller::class, 'updateStatusdetailPembayaran'])->name('updateStatusdetailPembayaran');
+    Route::post('/admin/updatepembayaran/{id}', [Pembayaran_controller::class, 'updateStatusPembayaran'])->name('updateStatusPembayaran');
+    
+
+
+
+    
+    
 
     
 });
