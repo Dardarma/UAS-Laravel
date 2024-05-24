@@ -99,6 +99,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @foreach ($group['checkouts'] as $checkout)
                                         <tr>
                                             <td>{{ $checkout->id }}</td>

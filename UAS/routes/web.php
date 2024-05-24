@@ -22,27 +22,55 @@ use App\Http\Controllers\Pembayaran_controller;
 
 // Route::get('/store', [Controller::class, 'store'])->name('store');
 
+Route::get('/home', function () {
+    return view('Beranda');
+});
 
+//beranda route
 Route::get('/', [Controller::class, 'index'])->name('Beranda');
-//login route
+//logout route
+Route::get('/logout', [session::class, 'logout'])->name('logout');
+
+//buat yang belum login
 Route::middleware(['guest'])->group(function () { 
     Route::get('/store', [cartController::class, 'store'])->name('store');
     Route::get('/login', [Controller::class, 'Login_admin'])->name('tlogin');
     Route::post('/login-pros', [session::class, 'login_pros'])->name('login-pros');
+    Route::get('/register',[UsersController::class,'view_register'])->name('register');
+    Route::post('/register-pros',[UsersController::class,'Regist_pros'])->name('register-pros');
 });
 
-//logout route
-Route::get('/logout', [session::class, 'logout'])->name('logout');
+//buat yang sudah login
+
+
+//login admin
 
 Route::middleware(['auth'])->group(function () {
-
-    
 
     //user route main
     Route::get('/store_login', [cartController::class, 'store_login'])->name('store_login');
 
-    
-    //Admin route
+
+    //add to cart route
+    Route::get('/addtocart/{id}', [Pembayaran_controller::class, 'addTocart'])->name('addtocart');
+
+    //delete cart route
+    Route::get('/deletecart/{id}', [cartController::class, 'delete_cart'])->name('deletecart');
+
+    //update cart route
+    Route::post('/updatecart/{id}', [cartController::class, 'update_cart'])->name('updatecart');
+
+    //move to chekout route
+    Route::post('/checkout', [Pembayaran_controller::class, 'checkout'])->name('checkout');
+
+    //detail cart tampilan route
+    Route::get('/cart', [cartController::class, 'index'])->name('cart');
+
+   
+
+    //admin only
+    Route::middleware('user_akses:admin')->group(function () {
+       //Admin route
     Route::get('/admin',[Pembayaran_controller::class,'detail_checkout'])->name('admin');
     
     //User list route
@@ -51,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
     //User add route
     Route::get('/admin/user/register', [Controller::class, 'Register_admin'])->name('Register_admin');
     Route::post('/admin/user/tambah', [UsersController::class, 'Tambah_user'])->name('Tambah_User');
+    
     
     //User edit route
     Route::get('/admin/user/{id}/tedit', [UsersController::class, 'tEdit_user'])->name('tEdit_user');
@@ -73,32 +102,9 @@ Route::middleware(['auth'])->group(function () {
     //Barang delete route
     Route::get('/admin/barang/{id}/delete', [BarangController::class, 'Delete_barang'])->name('Delete_barang');
 
+     // validasi pembayaran
+     Route::post('/admin/updatedetail/{id}', [Pembayaran_controller::class, 'updateStatusdetailPembayaran'])->name('updateStatusdetailPembayaran');
+     Route::post('/admin/updatepembayaran/{id}', [Pembayaran_controller::class, 'updateStatusPembayaran'])->name('updateStatusPembayaran');
 
-    //add to cart route
-    Route::get('/addtocart/{id}', [Pembayaran_controller::class, 'addTocart'])->name('addtocart');
-
-    //delete cart route
-    Route::get('/deletecart/{id}', [cartController::class, 'delete_cart'])->name('deletecart');
-
-    //update cart route
-    Route::post('/updatecart/{id}', [cartController::class, 'update_cart'])->name('updatecart');
-
-    //move to chekout route
-    Route::post('/checkout', [Pembayaran_controller::class, 'checkout'])->name('checkout');
-
-    //detail checkout route
-
-    Route::get('/cart', [cartController::class, 'index'])->name('cart');
-
-    // validasi pembayaran
-    Route::post('/admin/updatedetail/{id}', [Pembayaran_controller::class, 'updateStatusdetailPembayaran'])->name('updateStatusdetailPembayaran');
-    Route::post('/admin/updatepembayaran/{id}', [Pembayaran_controller::class, 'updateStatusPembayaran'])->name('updateStatusPembayaran');
-    
-
-
-
-    
-    
-
-    
+    });
 });

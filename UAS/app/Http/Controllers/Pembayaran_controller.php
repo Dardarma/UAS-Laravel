@@ -86,24 +86,26 @@ class Pembayaran_controller extends Controller
 
     public function detail_checkout()
     {
-    $userid = Auth::user()->id;
+
+
 
     // Ambil semua detail_pembayaran untuk user ini
-    $detail_pembayarans = detail_pembayaran::where('id_user', $userid)->get();
+    $detail_pembayarans = detail_pembayaran::all();
 
     // Array untuk menyimpan data yang dikelompokkan
     $grouped_checkouts = [];
 
+    
     foreach ($detail_pembayarans as $detail_pembayaran) {
-        // Ambil semua pembayaran terkait dengan detail_pembayaran ini
-        $checkouts = Pembayaran::where('id_detail_pembayaran', $detail_pembayaran->id)->get();
 
+        $checkouts = Pembayaran::where('id_detail_pembayaran', $detail_pembayaran->id)->get();
         $grouped_checkouts[] = [
             'detail_pembayaran' => $detail_pembayaran,
             'checkouts' => $checkouts,
         ];}
+
+      
         return view('admin.home_admin', [
-            'checkouts' => $checkouts,
             'grouped_checkouts' => $grouped_checkouts,
             'judul' => 'admin'
         ]);
@@ -144,27 +146,19 @@ public function updateStatusdetailPembayaran(Request $request, $id){
     return redirect()->back()->with('success', 'Status detail pembayaran berhasil diubah.');
 }
 
-// public function simpanDetailPembayaran($id)
-// {
-//     $detail_pembayaran = DetailPembayaran::find($id);
+public function cetak_struk($id)
+{
+    $detail_pembayaran = detail_pembayaran::find($id);
+    if($detail_pembayaran->status==true){
+        $checkouts = Pembayaran::where('id_detail_pembayaran', $id)->get();
+    }
 
-//     if ($detail_pembayaran->status==true) {
-//         return redirect()->back()->with('error', 'Detail pembayaran sudah disimpan.');
-//     }
-
-//     // Mengurangi stok barang
-//     $checkout = Pembayaran::where('id_detail_pembayaran', $id)->get();
-//     foreach ($checkout as $c) {
-//         $barang = Barang::find($c->id_barang);
-//         $barang->stok_barang -= $c->jumlah_barang;
-//         $barang->save();
-//     }
-
-//     $detail_pembayaran->status = true;
-//     $detail_pembayaran->save();
-
-//     return redirect()->back()->with('success', 'Detail pembayaran berhasil disimpan.');
-// }
+    return view('user.profil', [
+        'detail_pembayaran' => $detail_pembayaran,
+        'checkouts' => $checkouts,
+        'judul' => 'Cetak Struk'
+    ]);
 
 
+}
 }

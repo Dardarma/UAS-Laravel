@@ -23,11 +23,6 @@ class Controller extends BaseController
             'judul' => 'store'
         ]);
     }
-
-    
-
-
-
        
     public function User_list()
     {
