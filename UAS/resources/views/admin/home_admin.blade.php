@@ -91,10 +91,10 @@
                                     <tr>
                                         <th>ID Pembayaran</th>
                                         <th>Nama User</th>
-                                        <th>Alamat</th>
-                                        <th>No Telp</th>
-                                        <th>Ekspedisi</th>
-                                        <th>Harga</th>
+                                        <th>Nama barang</th>
+                                        <th>Jumlah barang</th>
+                                        <th>harga</th>
+                                        <th>subtotal</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -104,10 +104,10 @@
                                         <tr>
                                             <td>{{ $checkout->id }}</td>
                                             <td>{{ $checkout->nama_user }}</td>
-                                            <td>{{ $checkout->alamat }}</td>
-                                            <td>{{ $checkout->no_telp }}</td>
-                                            <td>{{ $checkout->ekspedisi }}</td>
+                                            <td>{{ $checkout->barang->nama_barang }}</td>
+                                            <td>{{ $checkout->jumlah_barang }}</td>
                                             <td>{{ $checkout->harga }}</td>
+                                            <td>{{ $checkout->subtotal_harga }}</td>
                                             <td>
                                             @if (!$group['detail_pembayaran']->saved)
                                             <form action="{{ route('updateStatusPembayaran', $checkout->id) }}" method="POST">

@@ -126,25 +126,54 @@ class Pembayaran_controller extends Controller
     return redirect()->back()->with('success', 'Status pembayaran berhasil diubah.');
 }
 
-public function updateStatusdetailPembayaran(Request $request, $id){
+public function updateStatusdetailPembayaran(Request $request, $id)
+{
     $detail_pembayaran = detail_pembayaran::find($id);
-
-    if ($detail_pembayaran->status==true) {
+    
+    if ($detail_pembayaran->status == true) {
         return redirect()->back()->with('error', 'Detail pembayaran sudah disimpan.');
     }
 
-    $checkout = Pembayaran::where('id_detail_pembayaran', $id)->get();
-    foreach ($checkout as $c) {
+    $checkouts = Pembayaran::where('id_detail_pembayaran', $id)->get();
+    
+    $totalHargaBaru = 0;
+    $jumlahBarangBaru = 0;
+
+    foreach ($checkouts as $c) {
         $barang = Barang::find($c->id_barang);
-        $barang->stok_barang -= $c->jumlah_barang;
-        $barang->save();
+        
+        if ($c->status === 'terima') {
+            if ($barang->stok_barang >= $c->jumlah_barang) {
+                $barang->stok_barang -= $c->jumlah_barang;
+                $barang->save();
+
+                // Tambahkan subtotal harga dan jumlah barang yang diterima
+                $totalHargaBaru += $c->subtotal_harga;
+                $jumlahBarangBaru += $c->jumlah_barang;
+            } else {
+                return redirect()->back()->with('error', 'Stok barang tidak mencukupi untuk barang ' . $barang->nama_barang);
+            }
+        }
     }
 
+    // Set total harga dan jumlah barang pada detail_pembayaran berdasarkan pembayaran yang diterima
+    $detail_pembayaran->total_harga = $totalHargaBaru;
+    $detail_pembayaran->jumlah_barang = $jumlahBarangBaru;
     $detail_pembayaran->status = true;
     $detail_pembayaran->save();
 
     return redirect()->back()->with('success', 'Status detail pembayaran berhasil diubah.');
 }
+
+
+public function cleardetailpembayaran($id)
+{
+    $detail_pembayaran = detail_pembayaran::find($id);
+    $detail_pembayaran->delete();
+
+    return redirect()->back()->with('success', 'Detail pembayaran berhasil dihapus.');
+}
+
 
 public function cetak_struk($id)
 {
@@ -161,4 +190,5 @@ public function cetak_struk($id)
 
 
 }
+
 }

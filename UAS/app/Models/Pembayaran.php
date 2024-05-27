@@ -23,4 +23,12 @@ class pembayaran extends Model
         'id_detail_pembayaran',
         
     ];
+    public function user()
+    {
+        return $this->belongsTo(Users::class, 'id_user', 'id');
+    }
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class, 'id_barang', 'id');
+    }
 }

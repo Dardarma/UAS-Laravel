@@ -64,6 +64,7 @@ class BarangController extends Controller
         $barangs->nama_barang = $request->nama_barang;
         $barangs->deskripsi_barang = $request->deskripsi_barang;
         $barangs->harga_barang = $request->harga_barang;
+        $barangs->stok_barang = $request->stok_barang;
 
         if ($request->hasFile('foto_barang')) {
             $file = $request->file('foto_barang');
