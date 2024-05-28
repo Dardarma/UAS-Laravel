@@ -175,20 +175,34 @@ public function cleardetailpembayaran($id)
 }
 
 
-public function cetak_struk($id)
+public function show_cetak_struk()
 {
-    $detail_pembayaran = detail_pembayaran::find($id);
-    if($detail_pembayaran->status==true){
-        $checkouts = Pembayaran::where('id_detail_pembayaran', $id)->get();
+    $userid = Auth::user()->id; // Mendapatkan ID pengguna yang sedang login
+    $detail_pembayarans = detail_pembayaran::where('id_user', $userid)
+                                           ->where('status', true)
+                                           ->latest()
+                                           ->get(); // Mendapatkan semua detail pembayaran yang statusnya true
+
+    $grouped_checkouts = [];
+
+    foreach ($detail_pembayarans as $detail_pembayaran) {
+        $checkouts = Pembayaran::where('id_detail_pembayaran', $detail_pembayaran->id)
+                                ->where('id_user', $userid) // Filter berdasarkan ID pengguna
+                                ->get();
+        $grouped_checkouts[] = [
+            'detail_pembayaran' => $detail_pembayaran,
+            'checkouts' => $checkouts,
+        ];
     }
 
-    return view('user.profil', [
-        'detail_pembayaran' => $detail_pembayaran,
-        'checkouts' => $checkouts,
-        'judul' => 'Cetak Struk'
+    return view('user.profile', [
+        'judul' => 'Cetak Struk',
+        'grouped_checkouts' => $grouped_checkouts
     ]);
-
-
 }
+
+
+
+
 
 }

@@ -66,6 +66,10 @@ Route::middleware(['auth'])->group(function () {
     //detail cart tampilan route
     Route::get('/cart', [cartController::class, 'index'])->name('cart');
 
+    //cetak nota
+    Route::get('/profile/{id}', [Pembayaran_controller::class, 'cetak_struk'])->name('cetak_struk');
+    Route::get('/nota', [Pembayaran_controller::class, 'show_cetak_struk'])->name('cetak_nota');
+
    
 
     //admin only

@@ -38,7 +38,7 @@
                             @endif
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link red" href="#">Profil</a>
+                            <a class="nav-link red" href="{{Route('cetak_nota')}}">Profil</a>
                           </li>
                         </ul>
                               <form class="d-flex mx-auto" role="search" >
