@@ -86,7 +86,7 @@
         <!-- /.social-auth-links -->
   
         <p class="mb-1">
-          <a href="forgot-password.html">I forgot my password</a>
+          <a href="{{Route('register')}}">register</a>
         </p>
 
       </div>
